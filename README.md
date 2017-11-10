@@ -12,14 +12,18 @@
 ## Install Maven
 
 `sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo`
+
 `sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo`
+
 `sudo yum install -y apache-maven`
+
 `mvn --version`
 
 
 ## Make project directory
 
 `mkdir project`
+
 `cd project`
 
 
@@ -47,5 +51,6 @@
 `hdfs dfs -get /ded_output /home/hadoop/project/Spark-Deduplication`
 
 ## Check output data
-cd ded_output
-cat part-00000
+`cd ded_output`
+
+`cat part-00000`
