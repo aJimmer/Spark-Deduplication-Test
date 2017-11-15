@@ -13,7 +13,6 @@ rm -rf $OUTPUTDIR
 mkdir -p $OUTPUTDIR
 
 hdfs dfs -rm -skipTrash -R /ded_input /ded_output
-
 hdfs dfs -mkdir /ded_input
 
 if [ ! -f $JARFILE ]; then
@@ -24,6 +23,7 @@ fi
 echo "Deduping - Generating data"
 spark-submit --class com.hadoop.spark.dedup.GenDedupInput $JARFILE \
   /ded_input/ded.txt 1000000 100 2>&1 | tee $OUTPUTDIR/GenDedupInput.out
+
 echo "Deduping - Executing example"
 spark-submit --class com.hadoop.spark.dedup.SparkDedupExecution $JARFILE \
   /ded_input /ded_output 2>&1 | tee $OUTPUTDIR/SparkDedupExecution.out
